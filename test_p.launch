@@ -1,0 +1,16 @@
+<launch>
+    <!-- 启动 turtlesim 节点 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <!-- 启动键盘控制节点 -->
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen"/>
+    <!-- 创建两只新的乌龟 -->
+    <node pkg="tf04_test" type="Test01_Create_Turtle2" name="turtle2" output="screen"/>
+    <node pkg="tf04_test" type="Test01_Create_Turtle2" name="turtle3" output="screen"/>
+    <!-- 发布两只乌龟的坐标信息 -->
+    <node pkg="tf04_test" type="Test02_TF2_Caster" name="pub1" args="turtle1" output="screen"/>
+    <node pkg="tf04_test" type="Test02_TF2_Caster" name="pub2" args="turtle2" output="screen"/>
+    <node pkg="tf04_test" type="Test02_TF2_Caster" name="pub3" args="turtle3" output="screen"/>
+    <!-- 订阅坐标信息，并且转换成乌龟1相对于乌龟2和乌龟3的坐标信息，最后再生成控制乌龟的速度信息 -->
+    <node pkg="tf04_test" type="Test03_TF2_Listener" name="control" output="screen"/>
+</launch>
+
